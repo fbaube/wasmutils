@@ -26,7 +26,7 @@ var (
   <button onClick="subtract('val1', 'val2', 'result');"
   	  id="subtractButton">Subtract</button>
   NOTE that this next one is an "input" even tho we use it as write-only!
-  <input type="text" id="result">
+     <input type="text" id="result">
 */
 
 // GetElmByID is TBS.
