@@ -1,5 +1,4 @@
-// +build !js
-// +build !wasm
+//go:build !js || !wasm
 
 package wasmutils
 
