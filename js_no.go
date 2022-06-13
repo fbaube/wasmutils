@@ -6,3 +6,7 @@ package wasmutils
 func IsWasm() bool {
 	return false
 }
+
+func IsBrowser() bool {
+	return false
+}
