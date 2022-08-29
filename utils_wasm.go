@@ -1,20 +1,25 @@
-// +build js,wasm
+// g o : build js && wasm
+
+// Wired: "go:build"
+// Tired: "+build"
+
+// This file needs a filename "_wasm.go"
 
 package wasmutils
 
 import (
-       "syscall/js"
-       "strconv"
-       // "time"
-       )
+	"strconv"
+	"syscall/js"
+	// "time"
+)
 
 // JSfunc is a typedef for a JS function that can be called from Go.
 type JSfunc func(this js.Value, args []js.Value) interface{}
 
 var (
-  // Doc is THE global HTML document.
-	Doc  = js.Global().Get("document")
-  // Body is THE global HTML <body> tag.
+	// Doc is THE global HTML document.
+	Doc = js.Global().Get("document")
+	// Body is THE global HTML <body> tag.
 	Body = GetElmByID("body") // Doc.Call("getElementById", "body")
 )
 
@@ -31,31 +36,34 @@ var (
 
 // GetElmByID is TBS.
 func GetElmByID(s string) js.Value {
-     return Doc.Call("getElementById", s)
-     }
+	return Doc.Call("getElementById", s)
+}
 
 // GetElmIntValByID is TBS.
 func GetElmIntValByID(s string) int {
-     ss := GetElmByID(s).Get("value").String()
-     ii, _ := strconv.Atoi(ss)
-     return ii
-     }
+	ss := GetElmByID(s).Get("value").String()
+	ii, _ := strconv.Atoi(ss)
+	return ii
+}
 
 // SetElmIntValByID is TBS.
 func SetElmIntValByID(s string, i int) {
-     GetElmByID(s).Set("value", i)
-     }
+	GetElmByID(s).Set("value", i)
+}
 
 // SetElmTextValByID is TBS.
 func SetElmTextValByID(s string, v string) {
-     GetElmByID(s).Set("value", v)
-     }
+	GetElmByID(s).Set("value", v)
+}
 
 // SetCallback returns a wrapped function.
 // See https://golang.org/pkg/syscall/js/#FuncOf
-//   func FuncOf(fn func(this Value, args []Value) interface{}) Func
+//
+//	func FuncOf(fn func(this Value, args []Value) interface{}) Func
+//
 // Note then that fn is:
-//   func(this Value, args []Value) interface{}
+//
+//	func(this Value, args []Value) interface{}
 //
 // Invoking the JS function will synchronously call the Go function
 // fn with the value of JS's "this" keyword and the arguments of the
@@ -72,16 +80,16 @@ func SetElmTextValByID(s string, v string) {
 // will not be used any more.
 //
 // Usage example:
-//  var cb js.Func
-//  cb = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-//     fmt.Println("button clicked")
-//     cb.Release() // release the function if button won't be clicked again
-//     return nil
-//     })
-//  js.Global().Get("document")
-//  .Call("getElementById", "myButton")
-//  .Call("addEventListener", "click", cb)
 //
+//	var cb js.Func
+//	cb = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+//	   fmt.Println("button clicked")
+//	   cb.Release() // release the function if button won't be clicked again
+//	   return nil
+//	   })
+//	js.Global().Get("document")
+//	.Call("getElementById", "myButton")
+//	.Call("addEventListener", "click", cb)
 func SetCallback(funcName string, funcBody JSfunc) {
 	// OBS/prev.: js.Global().Set(funcName, js.NewCallback(funcBody))
 	js.Global().Set(funcName, js.FuncOf(funcBody))
@@ -95,5 +103,5 @@ func StayInMemory() {
 
 // Alert displays a modal(?) dialog.
 func Alert(s string) {
-  	js.Global().Get("alert").Invoke(s)
+	js.Global().Get("alert").Invoke(s)
 }
