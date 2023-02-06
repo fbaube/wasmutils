@@ -23,15 +23,15 @@ var (
 	Body = GetElmByID("body") // Doc.Call("getElementById", "body")
 )
 
-/*
-  <input type="text" id="val1"/>
-  <input type="text" id="val2"/>
-  <button onClick="add('val1', 'val2', 'result');"
-  	  id="addButton">Add</button>
-  <button onClick="subtract('val1', 'val2', 'result');"
-  	  id="subtractButton">Subtract</button>
-  NOTE that this next one is an "input" even tho we use it as write-only!
-     <input type="text" id="result">
+/* HTML input stuff
+<input type="text" id="val1"/>
+<input type="text" id="val2"/>
+<button onClick="add('val1', 'val2', 'result');"
+	  id="addButton">Add</button>
+<button onClick="subtract('val1', 'val2', 'result');"
+	  id="subtractButton">Subtract</button>
+NOTE that this next one is an "input" even tho we use it as write-only!
+   <input type="text" id="result">
 */
 
 // GetElmByID is TBS.
