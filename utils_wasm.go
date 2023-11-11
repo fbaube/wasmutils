@@ -16,13 +16,6 @@ import (
 // JSfunc is a typedef for a JS function that can be called from Go.
 type JSfunc func(this js.Value, args []js.Value) interface{}
 
-var (
-	// Doc is THE global HTML document.
-	Doc = js.Global().Get("document")
-	// Body is THE global HTML <body> tag.
-	Body = GetElmByID("body") // Doc.Call("getElementById", "body")
-)
-
 /* HTML input stuff
 <input type="text" id="val1"/>
 <input type="text" id="val2"/>
