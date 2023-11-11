@@ -8,37 +8,31 @@
 package wasmutils
 
 import (
-	"strconv"
 	"syscall/js"
-	"encoding/json"
 )
 
-func AsMappedError(s string) map[string]any {
-     return map[string]any { "error": s, }
-     }
-
-func AsPrettyJson(input string) (string, error) {
-	var raw any
-	if err := json.Unmarshal([]byte(input), &raw); err != nil {
-		return "", err
-	}
-	pretty, err := json.MarshalIndent(raw, "", "  ")
-	if err != nil {
-		return "", err
-	}
-	return string(pretty), nil
+// GetElmByTag is TBS.
+//
+// func (v Value) Get(p string) Value :: 
+//  - Get returns the JS property p of value v
+//  - It panics if v is not a JS object
+// .
+func GetElmByTag(s string) js.Value {
+	return Doc.Get(s)
 }
 
-/* HTML input stuff
-<input type="text" id="val1"/>
-<input type="text" id="val2"/>
-<button onClick="add('val1', 'val2', 'result');"
-	  id="addButton">Add</button>
-<button onClick="subtract('val1', 'val2', 'result');"
-	  id="subtractButton">Subtract</button>
-NOTE that this next one is an "input" even tho we use it as write-only!
-   <input type="text" id="result">
-*/
+// GetElmByID is TBS.
+//
+// func (v Value) Call(m string, args ...any) Value
+//  - Call does a JS call to the method m of value v with the given args
+//  - It panics if v has no method m
+//  - The arguments get mapped to JS values per the ValueOf function.
+// . 
+func GetElmByID(s string) js.Value {
+	return Doc.Call("getElementById", s)
+}
+
+/*
 
 // GetElmIntValByID is TBS.
 func GetElmIntValByID(s string) int {
@@ -95,6 +89,7 @@ func SetCallback(funcName string, funcBody JSfunc) {
 	// OBS/prev.: js.Global().Set(funcName, js.NewCallback(funcBody))
 	js.Global().Set(funcName, js.FuncOf(funcBody))
 }
+*/
 
 /*
 // StayInMemory blocks WASM from exiting.
@@ -102,7 +97,9 @@ func StayInMemory() {
 	c := make(chan struct{}, 0)
 	<-c
 }
+*/
 
+/*
 // Alert displays a modal(?) dialog.
 func Alert(s string) {
 	js.Global().Get("alert").Invoke(s)
