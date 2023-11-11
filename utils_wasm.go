@@ -13,6 +13,12 @@ import (
 	"encoding/json"
 )
 
+func SetTextByID(sID, sMsg string) {
+    elm := GetElmByID(sID) // Doc.Call("getElementById", sID)
+    // possible security problem 
+    elm.Set("innerHTML", sMsg)
+}
+
 func AsMappedError(s string) map[string]any {
      return map[string]any { "error": s, }
      }
