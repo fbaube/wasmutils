@@ -7,9 +7,9 @@ import (
 )
 
 // G, Doc, DocBody are (immutable?) global
-// singletons, so let's name them that way.
+// singletons, so let's go ahead and set
+// them up as easy-to-use package variables.
+// .
 var G, Doc, DocBody js.Value
 
-// JSfunc is a typedef for a JS function that Go can call.
-type JSfunc func(this js.Value, args []js.Value) interface{}
 
