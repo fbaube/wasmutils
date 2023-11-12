@@ -9,7 +9,6 @@ package wasmutils
 
 import (
 	"strconv"
-	"syscall/js"
 	"encoding/json"
 )
 

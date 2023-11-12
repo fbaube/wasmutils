@@ -8,9 +8,7 @@
 package wasmutils
 
 import (
-	"strconv"
 	"syscall/js"
-	"encoding/json"
 )
 
 // JSfunc is a typedef for a JS function that Go can call.
