@@ -8,7 +8,6 @@
 package wasmutils
 
 import (
-	"strconv"
 	"encoding/json"
 )
 
@@ -43,35 +42,5 @@ func AsPrettyJson(input string) (string, error) {
 	  id="subtractButton">Subtract</button>
 NOTE that this next one is an "input" even tho we use it as write-only!
    <input type="text" id="result">
-*/
-
-// GetElmIntValByID is TBS.
-func GetElmIntValByID(s string) int {
-	ss := GetElmByID(s).Get("value").String()
-	ii, _ := strconv.Atoi(ss)
-	return ii
-}
-
-// SetElmIntValByID is TBS.
-func SetElmIntValByID(s string, i int) {
-	GetElmByID(s).Set("value", i)
-}
-
-// SetElmTextValByID is TBS.
-func SetElmTextValByID(s string, v string) {
-	GetElmByID(s).Set("value", v)
-}
-
-/*
-// StayInMemory blocks WASM from exiting.
-func StayInMemory() {
-	c := make(chan struct{}, 0)
-	<-c
-}
-
-// Alert displays a modal(?) dialog.
-func Alert(s string) {
-	js.Global().Get("alert").Invoke(s)
-}
 */
 

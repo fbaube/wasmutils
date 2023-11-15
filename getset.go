@@ -9,6 +9,7 @@ package wasmutils
 
 import (
 	"syscall/js"
+	"strconv"
 )
 
 // GetElmByTag is TBS.
@@ -21,7 +22,7 @@ func GetElmByTag(s string) js.Value {
 	return Doc.Get(s)
 }
 
-// GetElmByID is TBS.
+// GetElmByID is fab.
 //
 // func (v Value) Call(m string, args ...any) Value
 //  - Call does a JS call to the method m of value v with the given args
@@ -31,8 +32,6 @@ func GetElmByTag(s string) js.Value {
 func GetElmByID(s string) js.Value {
 	return Doc.Call("getElementById", s)
 }
-
-/*
 
 // GetElmIntValByID is TBS.
 func GetElmIntValByID(s string) int {
@@ -51,15 +50,8 @@ func SetElmTextValByID(s string, v string) {
 	GetElmByID(s).Set("value", v)
 }
 
-// StayInMemory blocks WASM from exiting.
-func StayInMemory() {
-	c := make(chan struct{}, 0)
-	<-c
-}
-
 // Alert displays a modal(?) dialog.
 func Alert(s string) {
 	js.Global().Get("alert").Invoke(s)
 }
-*/
 
