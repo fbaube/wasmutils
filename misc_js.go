@@ -9,9 +9,9 @@ import (
 	"time"
 )
 
-func CurrentTime() string {
+func CurrentTimeAsHtml() string {
 	sTime := time.Now().Local().Format(time.RFC3339)
-	fmt.Println("Execution at", sTime)
+	fmt.Println("CurrentTimeAsHtml: execution at", sTime)
 	// Replace(str, oldstr, newstr string, m int) string
 	sTime = S.Replace(sTime, "T", "&nbsp;", 1)
 	sTime = S.Replace(sTime, "+", "&nbsp;<small>GMT+", 1)
@@ -42,8 +42,5 @@ func DoDomDemo() {
 	p = Doc.Call("createElement", "h6")
 	p.Set("innerHTML", "This is an H6")
 	DocBody.Call("appendChild", p)
-	// 2. Expose Go functions/values in JS variables.
-	// js.Global().Set("goVar", "I am a variable set from Go")
-	// js.Global().Set("sayHello", js.FuncOf(sayHello))
 }
 
