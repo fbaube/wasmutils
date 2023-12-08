@@ -1,4 +1,4 @@
-//go:build !js || !wasm
+// g o : build !windows && !js && !wasm
 
 package wasmutils
 

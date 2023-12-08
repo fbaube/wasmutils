@@ -1,4 +1,4 @@
-//go:build js && wasm
+// g o : build js || wasm
 
 // (should probably test js only)
 
@@ -8,18 +8,9 @@ import (
 	"syscall/js"
 )
 
-/*
-// IsBad is compiled only for JS+WASM.
-// Replace this with !Truthy() ?
-func IsBad(v js.Value) bool {
-	// return v == js.Undefined() || v == js.Null()
-	return v.Equal(js.Undefined()) || v.Equal(js.Null())
-}
-*/
-
 // IsWasm is compiled only for JS+WASM.
 func IsWasm() bool {
-	return true // js.Global != nil
+	return true // js.Global != nil // GOOS js && GOARCH wasm 
 }
 
 // IsBrowser is compiled only for JS+WASM.
