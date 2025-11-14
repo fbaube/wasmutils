@@ -4,6 +4,8 @@ package wasmutils
 
 import (
 	"syscall/js"
+	"fmt"
+	"os"
 )
 
 func init() {
@@ -27,12 +29,13 @@ func initPkgVars() {
 	Doc = G.Get("document")
 	if !(G.Truthy() && Doc.Truthy())  {
 		// return errors.New("Unable to get document object")
-		panic("CAN'T GET JS Global and/or webpage DOM")
+		fmt.Fprintf(os.Stderr, "CAN'T GET JS Global and/or webpage DOM")
+		return
 	}
 	DocBody = Doc.Get("body")
 	if !DocBody.Truthy() {
 		// panic("CAN'T GET webpage <body>")
-		println("Document has no <body>")
+		fmt.Fprintf(os.Stderr, "Document has no <body>")
 	}
 }
 
