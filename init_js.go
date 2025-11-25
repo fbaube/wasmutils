@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func Init() {
+func InitWU() {
      init()
 }
 
