@@ -18,13 +18,8 @@ func GetElmByTag(s string) js.Value {
 	return Doc.Get(s)
 }
 
-// GetElmByID is fab.
-//
-// func (v Value) Call(m string, args ...any) Value
-//  - Call does a JS call to the method m of value v with the given args
-//  - It panics if v has no method m
-//  - The arguments get mapped to JS values per the ValueOf function.
-// . 
+// GetElmByID returns the XML element
+// whose "id=" attribute matches.
 func GetElmByID(s string) js.Value {
 	return Doc.Call("getElementById", s)
 }
@@ -49,5 +44,13 @@ func SetElmTextValByID(s string, v string) {
 // Alert displays a modal(?) dialog.
 func Alert(s string) {
 	js.Global().Get("alert").Invoke(s)
+}
+
+func GetAsString(name string) string {
+     return GetElmByID(name).Get("value").String()
+}
+
+func NewElm(tagName string) js.Value {
+     return Doc.Call("createElement", tagName)
 }
 
