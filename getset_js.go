@@ -3,7 +3,7 @@
 // Wired: "go:build"
 // Tired: "+build"
 
-// This file needs a filename "_wasm.go"
+// This file needs a filename "_wasm.go" or "_js.go"
 
 package wasmutils
 
@@ -12,12 +12,8 @@ import (
 	"strconv"
 )
 
-// GetElmByTag is TBS.
-//
-// func (v Value) Get(p string) Value :: 
-//  - Get returns the JS property p of value v
-//  - It panics if v is not a JS object
-// .
+// GetElmByTag returns the first(?) XML element
+// whose tag matches (e.g. "body", "p").
 func GetElmByTag(s string) js.Value {
 	return Doc.Get(s)
 }

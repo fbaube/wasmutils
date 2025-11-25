@@ -8,12 +8,16 @@ import (
 	"os"
 )
 
+func Init() {
+     init()
+}
+
 func init() {
      initPkgVars()
 }
 
 // initPkgVars sets up some basic global (package) variables
-// related to JS. Don't stress if a "<body>" tag is not found.
+// related to JS. Don't panic if a "<body>" tag is not found.
 // 
 // This can be called explicitly from other init() func's,
 // and should be idempotent. There are two basic use cases:
@@ -33,9 +37,9 @@ func initPkgVars() {
 		return
 	}
 	DocBody = Doc.Get("body")
-	if !DocBody.Truthy() {
+	if !DocBody.Truthy() { // Don't panic !
 		// panic("CAN'T GET webpage <body>")
-		fmt.Fprintf(os.Stderr, "Document has no <body>")
+		fmt.Fprintf(os.Stderr, "Document has no <body> tag")
 	}
 }
 
