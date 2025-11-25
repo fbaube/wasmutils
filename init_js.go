@@ -9,7 +9,8 @@ import (
 )
 
 func InitWU() {
-     init()
+     // init()
+     initPkgVars()
 }
 
 func init() {
